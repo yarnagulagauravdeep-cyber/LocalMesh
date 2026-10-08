@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeasonMart | Shop the season</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body >
+<div class="ann">Free delivery above ₹499 &nbsp;|&nbsp; Free 7-day returns on every order</div>
+
+<header class="hd">
+  <a class="logo" href="#">SeasonMart</a>
+  <button class="hb" id="locBtn"><small>Deliver to</small><b id="locTxt">Set location</b></button>
+  <label class="hb season-pick"><small>Season</small>
+    <select id="seasonSel" aria-label="Current season">
+      <option value="summer">Summer</option>
+      <option value="monsoon">Monsoon</option>
+      <option value="winter">Winter</option>
+    </select>
+  </label>
+  <form class="search" id="searchForm" role="search">
+    <input id="q" placeholder="Search umbrellas, coolers, sweaters" aria-label="Search products">
+    <button type="submit">Search</button>
+  </form>
+  <button class="hb" id="ordBtn"><small>Returns</small><b>&amp; Orders</b></button>
+  <button class="hb" id="themeBtn">🌙 Dark</button>
+  <button class="cart" id="cartBtn">Cart <span id="cartN">0</span></button>
+</header>
+
+<nav class="cats" id="tabs" aria-label="Browse">
+  <button data-cat="all">All products</button>
+  <button data-cat="cool">Cooling</button>
+  <button data-cat="heat">Heating</button>
+  <button data-cat="rain">Weather Gear</button>
+  <button data-cat="cloth">Clothing</button>
+  <button data-cat="acc">Accessories</button>
+  <button data-cat="care">Personal Care</button>
+  <button data-cat="home">Home</button>
+  <button data-cat="open" class="hot">Open-box deals</button>
+</nav>
+
+<h2 class="sec" id="secT"></h2>
+<div class="shop-layout">
+  <main class="grid" id="grid"></main>
+  <aside class="ad-rail" id="adRail" aria-label="Seasonal recommendations"></aside>
+</div>
+
+<section class="obw" id="obw">
+  <h2 class="sec">Open-box deals near you <small>Returned, checked, ready to ship</small></h2>
+  <div class="grid" id="obGrid"></div>
+</section>
+
+<footer class="ft">
+  <span>Customer care: 1800-000-0000 &nbsp; support@seasonmart.example</span>
+  <span>Head office: 12 Sample Street, Chennai 600001</span>
+</footer>
+
+<dialog id="cartDlg" class="drawer">
+  <div class="dh"><h2>Your cart</h2><button class="x" data-close aria-label="Close">×</button></div>
+  <div id="cartList"></div>
+</dialog>
+
+<dialog id="ordDlg">
+  <div class="dh"><h2>Returns &amp; Orders</h2><button class="x" data-close aria-label="Close">×</button></div>
+  <div id="ordList"></div>
+</dialog>
+
+<dialog id="profDlg">
+  <form id="profForm">
+    <div class="dh"><h2>Delivery details</h2><button type="button" class="x" data-close aria-label="Close">×</button></div>
+    <div class="profile-info">
+      <div class="pi-row"><span>Name</span><b>Guest Shopper</b></div>
+      <div class="pi-row"><span>State</span><b id="pState">—</b></div>
+      <div class="pi-row"><span>Climate zone</span><b id="pZoneTxt">—</b></div>
+    </div>
+    <label>Deliver to city<select id="pCity" required><option value="">Select a city…</option></select></label>
+    <button type="button" class="btn ghost" id="driverBtn" disabled>🚚 Preferred driver: Any available</button>
+    <button class="btn buy" type="submit">Save location</button>
+  </form>
+</dialog>
+
+<dialog id="retDlg">
+  <form id="retForm">
+    <div class="dh"><h2>Return this item</h2><button type="button" class="x" data-close aria-label="Close">×</button></div>
+    <p class="ritem" id="rItem"></p>
+    <fieldset><legend>What went wrong?</legend><div class="chips" id="chips"></div></fieldset>
+    <label>Tell us in your own words
+      <textarea id="reason" rows="4" placeholder="e.g. The handle snapped on day two, or I just don't like the colour."></textarea></label>
+    <p class="err" id="err" hidden>Add at least 10 characters so we can route your return correctly.</p>
+
+    <div id="resolveStep" hidden>
+      <p class="defect-note">This sounds like a hardware issue. How would you like us to resolve it?</p>
+      <div class="resolve-opts">
+        <button type="button" class="resolve-opt" data-res="refund">
+          <b>Refund</b><small>Get your money back</small>
+        </button>
+        <button type="button" class="resolve-opt" data-res="replacement">
+          <b>Replacement</b><small>We&rsquo;ll send a new one</small>
+        </button>
+      </div>
+      <p class="err" id="resErr" hidden>Pick refund or replacement to continue.</p>
+    </div>
+
+    <button class="btn buy" type="submit" id="retSubmitBtn">Submit return</button>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
