@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WareHub | Local Warehouse Administration</title>
+<script>document.documentElement.dataset.theme=localStorage.getItem('warehub_theme')||'dark'</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hd">
+  <div class="hd-brand">
+    <span class="mark">WH</span>
+    <div class="hd-text">
+      <b>WareHub</b>
+      <span id="whName">Chennai Local Warehouse Administration</span>
+    </div>
+  </div>
+  <div class="hd-actions">
+    <label class="whpick">Warehouse<select id="whSel" aria-label="Switch local warehouse"></select></label>
+    <button class="theme" id="themeBtn">Dark mode</button>
+    <a href="/shop/">SeasonMart <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+    <a href="/brandcenter/">Brand Center <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+  </div>
+</header>
+<nav class="tabs" id="tabs" aria-label="Sections">
+  <button data-t="queue" class="on">Returns queue</button>
+  <button data-t="inv">Inventory</button>
+  <button data-t="tr">Transfers</button>
+</nav>
+<section class="kp" id="kp"></section>
+<main id="view"></main>
+
+<dialog id="ovDlg">
+  <form id="ovForm">
+    <h3 id="ovTitle">Override destination</h3>
+    <p class="empty" style="padding:0 0 .6rem">There is no auto-approve step — pick the destination to send this return to (pre-filled with the system's recommendation).</p>
+    <label><input type="radio" name="d" value="repair"> Local repair</label>
+    <label><input type="radio" name="d" value="local"> Local warehouse</label>
+    <label><input type="radio" name="d" value="far"> Far warehouse</label>
+    <div class="dact"><button type="button" class="btn" id="ovCancel">Cancel</button><button type="submit" class="btn p1">Apply</button></div>
+  </form>
+</dialog>
+
+<dialog id="povDlg">
+  <form id="povForm">
+    <h3 id="povTitle">Override product</h3>
+    <p class="empty" style="padding:0 0 .6rem">Change this product's name, stock count or price for this warehouse.</p>
+    <label>Product name<input id="povName" name="name" required></label>
+    <label>Units in stock<input id="povQty" name="qty" type="number" min="0" required></label>
+    <label>Price (₹)<input id="povPrice" name="price" type="number" min="0" required></label>
+    <div class="dact"><button type="button" class="btn" id="povCancel">Cancel</button><button type="submit" class="btn p1">Apply override</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>

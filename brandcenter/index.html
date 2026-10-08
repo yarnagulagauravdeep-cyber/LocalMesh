@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15172a" media="(prefers-color-scheme: dark)" />
+  <title>Local Brand Center</title>
+  <link rel="stylesheet" href="/brandcenter/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="top-brand">
+        <span class="mark">LM</span>
+        <div class="top-text">
+          <h1>Local Brand Center</h1>
+          <p>Service Centre Console</p>
+        </div>
+      </div>
+      <details class="menu">
+        <summary aria-label="More options">⋮</summary>
+        <div class="menu-sheet">
+          <a href="/" target="_blank" rel="noopener">Returns admin ↗</a>
+          <a href="/warehouse/" target="_blank" rel="noopener">WareHub admin ↗</a>
+          <a href="/shop/" target="_blank" rel="noopener">SeasonMart store ↗</a>
+        </div>
+      </details>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <nav class="segmented" id="tabs">
+      <button class="seg-btn on" data-view="repair">Repair</button>
+      <button class="seg-btn" data-view="stock">Stock</button>
+    </nav>
+
+    <main>
+      <section class="view" id="repair-view">
+        <p class="form-hint">Hardware-defect returns from the storefront land here automatically and wait for your call — tap a card and say whether resources are available.</p>
+        <div class="results" id="repair-results"></div>
+        <p class="empty-note" id="repair-empty">No repair checks yet. Hardware-defect returns from the storefront land here automatically.</p>
+      </section>
+
+      <section class="view" id="stock-view" hidden>
+        <p class="form-hint">Out-of-stock searches from the storefront land here automatically and wait for your call — tap a card and say whether the product is available.</p>
+        <div class="results" id="stock-results"></div>
+        <p class="empty-note" id="stock-empty">No stock checks yet. They land here automatically when a shopper searches for an out-of-stock item.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="/brandcenter/app.js"></script>
+</body>
+</html>

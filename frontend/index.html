@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalMesh WMS — Returns Intake</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <script src="/vendor/chart.umd.js"></script>
+  <script src="/vendor/leaflet/leaflet.js"></script>
+</head>
+<body>
+  <div class="wms">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">LM</span>
+        <div class="brand-text">
+          <h1>LocalMesh</h1>
+          <p>Returns Intake &amp; Routing Terminal</p>
+        </div>
+      </div>
+      <div class="topbar-stats">
+        <div class="tstat">
+          <span class="tstat-value" id="stat-queue">0</span>
+          <span class="tstat-label">In Queue</span>
+        </div>
+        <div class="tstat">
+          <span class="tstat-value" id="stat-local">0</span>
+          <span class="tstat-label">Local WH</span>
+        </div>
+        <div class="tstat">
+          <span class="tstat-value" id="stat-hub">0</span>
+          <span class="tstat-label">Central Hub</span>
+        </div>
+        <div class="tstat">
+          <span class="tstat-value" id="stat-defect">0</span>
+          <span class="tstat-label">Defects</span>
+        </div>
+        <div class="tstat live-stat">
+          <span class="tstat-value"><span class="live-dot"></span>LIVE</span>
+          <span class="tstat-label">Polling /api/returns</span>
+        </div>
+      </div>
+      <nav class="app-links">
+        <a href="/shop/" target="_blank" rel="noopener">SeasonMart store ↗</a>
+        <a href="/warehouse/" target="_blank" rel="noopener">WareHub admin ↗</a>
+        <a href="/brandcenter/" target="_blank" rel="noopener">Local Brand Center ↗</a>
+      </nav>
+    </header>
+
+    <nav class="view-tabs" id="view-tabs">
+      <button class="vt-btn on" data-view="returns">Returns Queue</button>
+      <button class="vt-btn" data-view="ads">Ads</button>
+      <button class="vt-btn" data-view="analysis">Analysis</button>
+    </nav>
+
+    <div class="layout">
+      <aside class="queue-pane">
+        <div class="pane-view" id="returns-view">
+          <div class="pane-head">
+            <h2>Returns Queue</h2>
+            <span class="pane-hint">Fed by the SeasonMart storefront</span>
+            <button class="clear-queue-btn" id="clear-queue" title="Clear all returns from queue">Clear Queue</button>
+          </div>
+          <div class="climate-filter" id="climate-filter">
+            <button class="cf-btn on" data-zone="All">All</button>
+            <button class="cf-btn" data-zone="Hot">Hot</button>
+            <button class="cf-btn" data-zone="Moderate">Moderate</button>
+            <button class="cf-btn" data-zone="Cold">Cold</button>
+          </div>
+          <div class="queue-list" id="queue-list"></div>
+          <div class="empty-state" id="empty-state">
+            <p class="empty-title">Queue is empty</p>
+            <p class="empty-sub">Submit a return on the storefront and it will appear here automatically.</p>
+            <a class="empty-link" href="/shop/" target="_blank" rel="noopener">Open SeasonMart →</a>
+          </div>
+        </div>
+
+        <div class="pane-view" id="ads-view" hidden>
+          <div class="pane-head">
+            <h2>Ad Eligibility</h2>
+            <span class="pane-hint">Pick a product to check where it can be advertised</span>
+          </div>
+          <div class="climate-filter" id="season-filter">
+            <button class="cf-btn on" data-season="summer">Summer</button>
+            <button class="cf-btn" data-season="monsoon">Monsoon</button>
+            <button class="cf-btn" data-season="winter">Winter</button>
+          </div>
+          <div class="product-list" id="product-list"></div>
+        </div>
+
+        <div class="pane-view" id="analysis-view" hidden>
+          <div class="pane-head">
+            <h2>Category Analysis</h2>
+            <span class="pane-hint">Which categories target which season &amp; climate, from the shared catalog</span>
+          </div>
+          <p class="empty-filter">The full breakdown is shown on the right — tallied directly from the catalog, so it always matches what WareHub stocks and the Ads tab reads.</p>
+        </div>
+      </aside>
+
+      <main class="detail-pane">
+        <div class="detail-placeholder" id="detail-placeholder">
+          <p>Select a return from the queue to view its routing analysis.</p>
+        </div>
+        <div class="detail-content" id="detail-content" hidden></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
